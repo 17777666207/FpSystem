@@ -1,0 +1,383 @@
+@charset "utf-8";
+
+body {
+    margin: 0px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+/*有没有下划线*/
+
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+/*文字位置，居中*/
+
+li {
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+/*文字样式有没有点*/
+
+/*input输入框*/
+.ip_text {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: 30px;
+}
+
+/*按钮*/
+.btn_save {
+    width: 125px;
+    height: 42px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    background: #F45B4B;
+    border: none; /*下半边边距*/
+}
+
+.headDiv { /*导航盒子,导航背景,position:fixed; z-index:50; 设置导航始终在顶端*/
+    position: fixed;
+    z-index: 50;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 80px;
+    border-top: #1d95cc solid 4px;
+    /*background: #000000;*/
+    background: black;
+}
+
+
+.headDiv .logo { /*首页logo样式，位置*/
+    display: block;
+    /* background:url("../images/fplogo.png") center no-repeat;  */
+    width: 136px;
+    height: 64px;
+    position: absolute;
+    left: 380px;
+    top: 8px;
+}
+
+
+.nav { /*导航文字位置样式*/
+    position: absolute;
+    left: 575px;
+    top: 24px;
+    float: left;
+}
+
+.nav li, .login li { /*导航横排*/
+    float: left;
+    padding-right: 5px;
+}
+
+.nav a, .login a, .login_off { /*导航文字样式*/
+    display: block;
+    float: left;
+    font-size: 14px;
+    color: #FFF;
+    padding: 0 15px;
+    min-width: 67px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.user a { /*导航登录，个人中心样式*/
+    text-decoration: none;
+    color: #FFF;
+}
+
+
+.nav a:hover, .login a:hover, .nav a.visited, .login a.visited {
+    background: #1d95cc;
+}
+
+/*选中文字变色,默认首页变色，选中其他变色*/
+
+
+.nav a:hover, .nav a.on {
+    background: #1d95cc;
+}
+
+/*访问界面变色*/
+
+.nav a, .login a {
+
+    -moz-border-radius: 15px;
+
+    -webkit-border-radius: 15px;
+
+    border-radius: 15px;
+
+}
+
+/*选中图形，变圆*/
+
+.login, .login_off {
+    /*主页导航logo*/
+    width: 15%;
+    height: 50px; /*距离14*/
+    /*background-color:black;*/
+    background-color: black;
+    text-align: center;
+    margin-top: 24px;
+    float: right;
+}
+
+
+.bg { /*主页背景图片*/
+    height: 700px; /* 盒子高700px */
+    width: 100%;
+    margin-top: 70px; /*上边距80，为导航边距 */
+    /* margin-bottom:0px;下边距为0 */
+    /* margin-left:-8px;
+    margin-right:-16px; */
+}
+
+
+/*********************分页************************/
+/*.f_y a{*/
+/*	text-decoration: none;*/
+/*	color: black;*/
+/*}*/
+
+.pagination li a {
+    text-decoration: none;
+    color: #999;
+    border: 1px solid #e3e0df;
+}
+
+/*****************扶贫资讯**********************/
+.zxbg {
+
+    height: 790px; /* 盒子高700px */
+    width: 110%;
+    margin-top: 70px; /* 上边距80，为导航边距 */
+    margin-bottom: 0px; /* 下边距为0 */
+    margin-left: -8px;
+    margin-right: -8px;
+    background: url("../imags/pkxp.jpg");
+    background-size: cover;
+}
+
+/*------------首页爱心捐助----------------------*/
+
+.article { /*父盒子*/
+    margin: 100px 300px 100px 400px;
+    /*margin:25px 300px 100px 400px;*/
+}
+
+.article_box { /*遍历盒*/
+    padding: 10px 20px 0px 20px;
+    margin-bottom: 35px;
+    width: 1100px;
+    background: #FFFFFF;
+    box-shadow: 0 0 17px 0 rgb(0 0 0 / 6%);
+
+}
+
+
+.acc_title { /*文章分类盒子*/
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #e35114;
+    height: 40px;
+    border-bottom: 3px solid #c7254e;
+
+}
+
+
+.flex_box { /*弹性布局*/
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+
+
+}
+
+.a_content { /*内容遍历盒子*/
+    margin: 0px 20px 0px 20px;
+    /*width: 290px;*/
+    width: 30%;
+    flex-shrink: 0; /*元素不会被挤压*/
+}
+
+.img_box { /*文章图片盒子*/
+    float: left;
+    cursor: pointer;
+    /*width: 240px;*/
+    width: 100%;
+    height: 216px;
+    background: #ffffff;
+}
+
+.img_box img { /*文章图片*/
+    /*width: 121%;*/
+    width: 100%;
+    object-fit: cover; /*居中自动剪裁图片*/
+    height: 216px;
+    display: block;
+
+}
+
+.ac_title { /*文章标题*/
+
+    height: 57px;
+    width: 100%;
+    font-size: 18px;
+    letter-spacing: 1.44px;
+    padding: 0px 20px;
+    box-sizing: border-box; /*特定的方式定义匹配某个区域的特定元素*/
+    margin: 8px 0;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #3b3b3b;
+    line-height: 25px;
+    /*text-overflow: -o-ellipsis-lastline;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /*line-clamp: 2;*/
+    -webkit-box-orient: vertical;
+}
+
+/*-----------------轮播图----------------------*/
+
+.carousel {
+    height: 450px;
+    width: 100%;
+    /*margin: 0 auto;*/
+    margin: 100px auto;
+}
+
+.carousel img {
+    object-fit: cover; /*居中自动剪裁图片*/
+}
+
+
+/*-------------首页爱心捐助---------------------*/
+
+/*捐款详情页*/
+
+.f_box {
+
+    width: 1000px;
+    height: 1000px;
+    margin: 110px 0px 0px 450px;
+}
+
+.return_article_p {
+
+    margin-bottom: 50px;
+    height: 28px;
+    font-size: 20px;
+    width: 1020px;
+    border-bottom: #ddd solid 1px;
+}
+
+.border_left_p {
+    width: 4px;
+    height: 20px;
+    float: left;
+    background: #ff6565;
+    /*margin-top: 5px;*/
+    margin-top: 0px;
+    margin-right: 20px;
+}
+
+.content_p {
+    border: #dad4d4 solid 1px;
+    background: #ffffff;
+    width: 88%;
+    height: 750PX;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
+.img_box_p {
+    float: left;
+    cursor: pointer;
+    width: 320px;
+
+    height: 250px;
+    background: #ffffff;
+    /*border: black solid 1px;*/
+    margin: 22px 50px 0px 20px;
+}
+
+.img_box_p img { /*文章图片*/
+    width: 100%;
+    object-fit: cover; /*居中自动剪裁图片*/
+    height: 216px;
+    display: block;
+}
+
+
+.logo_p {
+    object-fit: cover; /*居中自动剪裁图片*/
+    height: 80px;
+    display: block;
+    float: right;
+    cursor: pointer;
+    width: 150px;
+    background: #ffffff;
+    /*border: black solid 1px;*/
+    margin: -180px 6px 0px 0px;
+
+}
+
+.ac_content_p {
+    margin: 40px 0px 0px 00px;
+}
+
+.ac_content_p li {
+    font-size: 20px;
+    margin: 25px 0px 10px 20px;
+}
+
+.body_p {
+    width: 93%;
+    height: 340px;
+    border: #dad4d4 solid 1px;
+    border-top: none;
+    /*margin: 135px 0px 0px 20px;*/
+    margin: 0px 0px 0px 17px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+/*-----捐款详情页结束--------*/
+
+.title_head {
+    display: flex;
+    height: 52px;
+    margin: 37px 0px 0px 17px;
+    width: 95.5%;
+    line-height: 50px;
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    border-left: #dad4d4 solid 1px;
+
+}
+
+.title_head li {
+    width: 120px;
+}
+
+

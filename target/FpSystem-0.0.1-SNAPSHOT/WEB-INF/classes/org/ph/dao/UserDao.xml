@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ph.dao.UserDao">
+    <!--用户注册-->
+    <insert id="insertUser" parameterType="org.ph.entity.User">
+        insert into user (account,pwd,email,tel) values(#{account},#{pwd},#{email},#{tel})
+    </insert>
+
+    <!--用户登录-->
+    <select id="selectUserOfLogin" resultType="org.ph.entity.User">
+        select * from USER where account = #{account} and pwd = #{pwd}
+    </select>
+
+    <select id="select_order_sum" parameterType="org.ph.entity.Order" resultType="int">
+        select count(id) from `order` where user_id=#{id}
+    </select>
+
+    <!--修改信息-->
+    <update id="updateUserInfo">
+        update user set account = #{account},tel = #{tel},email = #{email} where id = #{id}
+    </update>
+
+    <!--修改密码查询-->
+    <select id="selectUserOfUpdate" resultType="org.ph.entity.User">
+        select * from USER where id = #{id}
+    </select>
+
+    <!-- 根据账号修改密码 -->
+    <update id="updateUserPwd">
+        update USER set pwd = #{pwd} where id = #{id}
+    </update>
+
+    <!--查询文章-->
+    <select id="selectArticleClass" resultType="org.ph.entity.ArticleClass">
+        select * from ArticleClass
+    </select>
+
+    <!--查询某一文章-->
+    <select id="selectArticle_order" resultType="org.ph.entity.Article">
+        select * from Article where id = #{id}
+    </select>
+
+    <!--查询某一文章-->
+    <update id="update_clear" parameterType="org.ph.entity.Article">
+        update Article set display = 1 , clear = 1 where id = #{id}
+    </update>
+
+    <!--查询文章分类-->
+    <select id="selectArticle" resultType="org.ph.entity.Article">
+        select * from Article
+    </select>
+
+
+    <!--查询文章(status)-->
+    <select id="select_article_status" resultMap="select_u_acc_total">
+        select * from Article where user_id = #{user_id}
+        <if test="status!= null and status!='' or status ==0">
+            and status=#{status}
+        </if>
+
+    </select>
+
+    <!--管理員文章发布保存-->
+    <insert id="article_save" parameterType="org.ph.entity.Article">
+        insert into Article(title,content,target,img,fileName,articleClass_id,system_article,addTime,user_id,status)
+        values(#{title},#{content},#{target},#{img},#{fileName},#{articleClass_id},1,#{addTime},0,1)
+    </insert>
+
+    <!--用户文章发布申请-->
+    <insert id="att_article_save" parameterType="org.ph.entity.Article">
+        insert into Article(title,content,target,img,fileName,articleClass_id,status,user_id,addTime)
+        values(#{title},#{content},#{target},#{img},#{fileName},#{articleClass_id},#{status},#{user_id},#{addTime})
+    </insert>
+    <!--第一次创建订单-->
+    <insert id="insert_payOrder" parameterType="org.ph.entity.Order">
+        insert into
+        `order`(out_trade_no,subject,body,total_amount,h_id,user_id,user_account,articleClass,article_id,pay_status,addTime)
+        values(#{out_trade_no},#{subject},#{body},#{total_amount},#{h_id},#{user_id},#{user_account},#{articleClass},#{article_id},#{pay_status},#{addTime})
+    </insert>
+    <!--通过订单号查找订单-->
+    <select id="select_orderByOut_trade_no" resultType="org.ph.entity.Order">
+        select * from `order` where out_trade_no = #{out_trade_no}
+    </select>
+
+    <!--<insert id="insert_payOrder_second" parameterType="org.ph.entity.Order">
+        insert into `order`(trade_no) values(#{trade_no}) where out_trade_no = #{out_trade_no}
+    </insert>-->
+
+    <!--二次完善订单-->
+    <update id="insert_payOrder_second">
+        update `order` set trade_no = #{trade_no}, pay_status = #{pay_status} where out_trade_no = #{out_trade_no}
+    </update>
+
+    <!--用户订单显示-->
+    <select id="select_order" resultType="org.ph.entity.Order">
+        select * from `order` where user_id = #{id}
+    </select>
+
+    <insert id="attestation_save" parameterType="org.ph.entity.Attestation">
+        insert into Attestation(real_name,address,p_id,state,img_att,fileName,status,u_id,addTime)
+        values (#{real_name},#{address},#{p_id},#{state},#{img_att},#{fileName},#{status},#{u_id},#{addTime})
+    </insert>
+    <update id="update_user_att" parameterType="org.ph.entity.User">
+        update User set att_status = 3 where id = #{id}
+    </update>
+
+
+    <!--查user-->
+    <select id="select_user" resultType="org.ph.entity.User">
+        select * from `user`
+    </select>
+
+
+    <!--查总金额-->
+    <select id="select_sum" parameterType="org.ph.entity.Order" resultType="double">
+
+        select sum(total_amount) from `Order` where article_id = #{article_id} and pay_status = 1
+    </select>
+
+    <!--查总金额_爱心进度-->
+    <select id="select_sum_user" parameterType="org.ph.entity.Order" resultType="double">
+        select sum(total_amount) from `Order` where h_id = #{h_id} and article_id = #{article_id} and pay_status = 1
+
+    </select>
+
+    <!--查询订单信息：user_name,文章分类名称，捐款总数-->
+    <select id="select_article_user" resultMap="select_u_acc_total">
+        select * from Article where user_id=#{id}
+    </select>
+
+
+    <!--贫困用户查询需求进度-->
+    <select id="select_article_u_search" resultMap="select_u_acc_total">
+        select * from Article where 1 = 1 and user_id=#{user_id}
+        <if test="title!= null and title != ''">
+            and title like "%"#{title}"%"
+        </if>
+        <if test="clear==1">
+            and clear != 0 and clear != 2
+        </if>
+        <if test="clear!=null and clear!='' and clear!=1">
+            and clear = #{clear}
+        </if>
+
+
+    </select>
+
+    <resultMap id="select_u_acc_total" type="Article">
+        <id property="id" column="id"/>
+
+        <result property="title" column="title"/>
+        <result property="user_id" column="user_id"/>
+        <result property="target" column="target"/>
+        <result property="content" column="content"/>
+        <result property="articleClass_id" column="articleClass_id"/>
+        <result property="fileName" column="fileName"/>
+        <result property="addTime" column="addTime"/>
+        <result property="sequence" column="sequence"/>
+        <result property="mark" column="mark"/>
+        <result property="clear" column="clear"/>
+        <result property="display" column="display"/>
+        <collection property="account" column="user_id" select="org.ph.dao.AdminDao.select_userName"></collection>
+        <collection property="articleClass_name" column="articleClass_id"
+                    select="org.ph.dao.AdminDao.select_className_id"></collection>
+    </resultMap>
+
+
+    <!--id对用userdao中的接口名，resultMap提示查询返回的结果类型-->
+    <select id="select_ningjinhuan" resultType="org.ph.entity.User">
+        select * from `user`
+    </select>
+
+</mapper>

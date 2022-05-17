@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="FpSystem:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>FpSystem</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="FpSystem-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="FpSystem:war exploded" />
+    </root>
+  </artifact>
+</component>

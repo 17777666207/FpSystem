@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.ph.dao.AdminDao">
+
+    <insert id="insert_articleClass" parameterType="org.ph.entity.ArticleClass">
+        insert into ArticleClass(className,sequence,addTime) values (#{className},#{sequence},#{addTime})
+    </insert>
+
+    <!--查系统文章，分页，按父id-->
+    <select id="select_Article_accid" resultType="org.ph.entity.Article">
+        select * from Article where articleClass_id = #{articleClass_id}
+    </select>
+
+    <!--查系统文章-->
+    <select id="select_Article" resultType="org.ph.entity.Article">
+        select * from Article
+    </select>
+
+    <!--根据id查文章-->
+    <select id="selectArticle" resultType="org.ph.entity.Article">
+        select * from Article where id=#{id}
+        <!--        <if test="sequence != null">-->
+        order by sequence = #{sequence} desc
+        <!--        </if>-->
+    </select>
+
+    <!--根据id查文章分类-->
+    <select id="selectArticleClass" resultType="org.ph.entity.ArticleClass">
+        select * from ArticleClass where id=#{id}
+        order by sequence desc
+    </select>
+    <!--更新文章-->
+    <update id="update_Article" parameterType="org.ph.entity.Article">
+        update Article set title = #{title},content = #{content},img = #{img},sequence = #{sequence},articleClass_id =
+        #{articleClass_id}
+        where id = #{id}
+
+    </update>
+
+    <!--更新文章分类-->
+    <update id="update_ArticleClass" parameterType="org.ph.entity.ArticleClass">
+        update ArticleClass set className = #{className}
+        where id = #{id}
+
+    </update>
+
+    <!--项目管理查询文章-->
+    <select id="select_title_articleClass_id" resultType="org.ph.entity.Article">
+        select * from Article where 1 = 1
+        <if test="title != null">
+            and title like "%"#{title}"%"
+        </if>
+        <if test="articleClass_id != null">
+            and articleClass_id = #{articleClass_id}
+        </if>
+    </select>
+
+    <!--项目管理查询文章分类-->
+    <select id="select_className" resultType="org.ph.entity.ArticleClass">
+        select * from ArticleClass where 1 = 1
+        <if test="className != null">
+            and className like "%"#{className}"%"
+        </if>
+
+    </select>
+
+    <!--删除分章-->
+    <delete id="delete_article">
+        delete from Article where id = #{id}
+    </delete>
+    <!--删除分章（外键删除）-->
+    <delete id="delete_article_accid">
+        delete from Article where articleClass_id = #{articleClass_id}
+    </delete>
+
+    <!--删除分章分类-->
+    <delete id="delete_articleClass">
+        delete from ArticleClass where id = #{id}
+    </delete>
+
+    <!--查询分章（分页）-->
+    <select id="selectArticle_pgInfo" resultType="org.ph.entity.Article">
+        select * from Article
+    </select>
+
+    <!--查询系统项目分章（分页）-->
+    <select id="select_S_Article_pgInfo" resultType="org.ph.entity.Article">
+        select * from Article where system_article = 1
+    </select>
+
+    <!--查询系统项目分章（分页）-->
+    <select id="select_U_Article_pgInfo" resultType="org.ph.entity.Article">
+        select * from Article where system_article = 0
+    </select>
+
+
+    <!--查询分章分类（分页）-->
+    <select id="selectArticleClass_pgInfo" resultType="org.ph.entity.ArticleClass">
+        select * from ArticleClass
+    </select>
+
+    <!--用户订单显示-->
+    <select id="select_order_aid" resultType="org.ph.entity.Order">
+        select * from `order` where article_id = #{article_id}
+    </select>
+
+    <!--用户订单显示-->
+    <select id="select_order" resultType="org.ph.entity.Order">
+        select * from `order`
+    </select>
+
+    <!--管理员模块用户-->
+    <select id="select_order_search" resultType="org.ph.entity.Order">
+        select * from `order` where 1 = 1
+        <if test="articleClass != null,articleClass != ''">
+            and articleClass = #{articleClass}
+        </if>
+        <if test="subject != null,subject != ''">
+            and subject like "%"#{subject}"%"
+        </if>
+        <if test="user_account != null ,user_account!=''">
+            and user_account like "%"#{user_account}"%"
+        </if>
+    </select>
+
+    <!--管理员模块用户   弃用-->
+    <select id="select_ac_search" resultType="org.ph.entity.Article">
+        select * from Article where 1 = 1
+        <if test="title != null,title != ''">
+            and title like "%"#{title}"%"
+        </if>
+        <if test="articleClass_id != null,articleClass_id != ''">
+            and articleClass_id = #{articleClass_id}
+        </if>
+
+    </select>
+
+    <!--查看用户申请-->
+    <select id="select_attestation" resultType="org.ph.entity.Attestation">
+        select * from Attestation where 1=1
+        and status = 0
+    </select>
+
+    <!--    &lt;!&ndash;查看用户申请详情,通过uid&ndash;&gt;-->
+    <!--    <select id="select_attestation_more" resultType="org.ph.entity.Attestation">-->
+    <!--        select * from Attestation where 1 = 1-->
+    <!--        and u_id = #{id}-->
+
+    <!--    </select>-->
+
+    <!--查看用户申请详情,通过uid-->
+    <select id="select_attestation_more" resultType="org.ph.entity.Attestation">
+        select * from Attestation where 1 = 1
+        and id = #{id}
+
+    </select>
+
+
+    <!--用户申请搜索,通过uid-->
+    <select id="select_attestation_search" resultType="org.ph.entity.Attestation">
+        select * from Attestation where 1 = 1
+        <if test="status != null and status != '' or status==0">
+            and status = #{status}
+        </if>
+        <if test="u_id != null and u_id!=''">
+            and u_id = #{u_id}
+        </if>
+
+    </select>
+
+    <!--查看user_id,通过id-->
+    <select id="select_userId_of_attestationId" resultType="org.ph.entity.Attestation">
+        select * from Attestation where 1 = 1
+        and id = #{id}
+    </select>
+
+    <!--审核结果-->
+    <update id="update_att_status" parameterType="org.ph.entity.Attestation">
+        update Attestation set status = #{status},result = #{result} where id = #{id}
+    </update>
+
+    <!--需求发布审核-->
+    <update id="update_article_apply" parameterType="org.ph.entity.Article">
+        update Article set status = #{status} where id = #{id}
+    </update>
+
+    <!--需求发布模糊搜索-->
+    <select id="article_apply_search" resultType="org.ph.entity.Article">
+        select * from Article where 1 = 1
+        <if test="title != null">
+            and title like "%"#{title}"%"
+        </if>
+    </select>
+
+    <!--    &lt;!&ndash;受助认证成功修改user状态&ndash;&gt;-->
+    <!--    <update id="update_user_status" parameterType="org.ph.entity.User">-->
+    <!--        update user set att_status = #{att_status}-->
+    <!--         <if test="status==1">-->
+    <!--             and status=1-->
+    <!--             and att_status=3-->
+    <!--         </if>-->
+    <!--         where id = #{id}-->
+    <!--    </update>-->
+    <!--受助认证成功修改user状态-->
+    <update id="update_user_status" parameterType="org.ph.entity.User">
+        update user
+        <if test="status==1">
+            set status=1
+            and att_status=3
+        </if>
+        <if test="status!=1">
+            set att_status = #{att_status}
+        </if>
+        where id = #{id}
+    </update>
+    <!--根据id查账号-->
+    <select id="select_userName" resultType="org.ph.entity.User">
+        select account from User where id = #{id}
+    </select>
+
+    <!--根据账号查id-->
+    <select id="select_uid" resultType="org.ph.entity.User">
+        select * from User where account = #{account}
+    </select>
+
+    <select id="select_className_id" resultType="org.ph.entity.ArticleClass">
+        select className from ArticleClass where id = #{id}
+    </select>
+
+    <!--查询订单信息：user_name,文章分类名称，捐款总数-->
+    <select id="select_article_all" resultMap="select_u_acc_total">
+        select * from Article
+    </select>
+
+    <!--爱心捐助结算-->
+    <update id="clear_article">
+        update Article set display = #{display},clear=#{clear} where id = #{id}
+    </update>
+
+    <select id="select_article_all_search" resultMap="select_u_acc_total">
+        select * from Article where 1 = 1
+        <if test="title != null and title != ''">
+            and title like "%"#{title}"%"
+        </if>
+        <if test="articleClass_id != null and articleClass_id != ''">
+            and articleClass_id = #{articleClass_id}
+        </if>
+        <if test="clear==1">
+            and clear != 0 and clear != 2
+        </if>
+        <if test="clear!=null and clear!='' and clear!=1">
+            and clear = #{clear}
+        </if>
+
+    </select>
+
+    <resultMap id="select_u_acc_total" type="Article">
+        <id property="id" column="id"/>
+
+        <result property="title" column="title"/>
+        <result property="user_id" column="user_id"/>
+        <result property="target" column="target"/>
+        <result property="content" column="content"/>
+        <result property="articleClass_id" column="articleClass_id"/>
+        <result property="fileName" column="fileName"/>
+        <result property="addTime" column="addTime"/>
+        <result property="sequence" column="sequence"/>
+        <result property="mark" column="mark"/>
+        <collection property="account" column="user_id" select="org.ph.dao.AdminDao.select_userName"></collection>
+        <collection property="articleClass_name" column="articleClass_id"
+                    select="org.ph.dao.AdminDao.select_className_id"></collection>
+    </resultMap>
+
+</mapper>
+
+

@@ -1,0 +1,241 @@
+
+body {
+    background: url("../imags/pkhouse.jpg");
+    background-size: cover;
+    padding: 150px 0px 0px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 100%;
+}
+
+.login_rg {
+    width: 100%;
+    height: 500px;
+    margin: 80px 0px 0px 0px;
+
+
+}
+
+/*底部*/
+.lg_bottom {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 17px 0 rgb(0 0 0 / 6%);
+    width: 100%;
+    height: 150px;
+
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #400040;
+}
+
+.login_rg h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin: 0px 0px 50px 0px;
+    font-family: 'Droid Serif', serif;
+}
+
+
+.login-top { /*登录底框样式*/
+    width: 574px;
+    height: 300px;
+    background: #E1E1E1;
+    border-radius: 25px 25px 0px 0px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px 25px 0px 0px;
+    -o-border-radius: 25px 25px 0px 0px;
+    padding: 60px 60px;
+    margin: 0 auto;
+}
+
+
+.register-top { /*注册底框样式*/
+    width: 635px;
+    height: 368px;
+    background: #E1E1E1;
+    border-radius: 25px 25px 0px 0px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px 25px 0px 0px;
+    -o-border-radius: 25px 25px 0px 0px;
+    padding: 30px 30px;
+    /*margin: -429px 215px 0px 0px;!*加图片样式*!*/
+    /*float: right*/
+    margin: 0 auto;
+}
+
+.lg_img {
+    width: 650px;
+    height: 429px;
+    margin: 0px 0px 0px 345px;
+    /*float: right;*/
+}
+
+.login-top h1, .register-top h1 { /*登录、注册字体*/
+    text-align: center;
+    font-size: 27px;
+    font-weight: 500;
+    color: #F45B4B;
+    margin: 0px 0px 20px 0px;
+}
+
+.log_reg h1 a { /*登录注册*/
+    color: #F45B4B;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    position: relative;
+}
+
+.log_reg h1 a:hover {
+    color: white;
+}
+
+.userName { /*用户名框*/
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #818181;
+    padding: 15px 20px;
+    background: #CACACA;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin: 0px 0px 12px 123px;
+    width: 50%;
+    -webkit-appearance: none;
+}
+
+.pwd { /*密码框*/
+    outline: none; /*密码框无边款*/
+    font-size: 15px;
+    font-weight: 500;
+    color: #818181;
+    padding: 15px 20px;
+    background: #CACACA;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin: 0px 0px 12px 123px;
+    width: 50%;
+
+}
+
+.check { /*登录验证码*/
+    outline: none;
+    padding: 15px 20px; /*内边距*/
+    font-size: 15px;
+    font-weight: 400;
+    color: #818181; /*文字颜色*/
+    background: #CACACA;
+    border: 1px solid #ccc;
+    border-radius: 25px; /*圆角*/
+    width: 23%;
+}
+
+.ckpt { /*登录验证码*/
+    width: 100px;
+    height: 50px;
+    float: left;
+    margin: 0px 20px 12px 129px; /*验证码和图片位置距离*/
+}
+
+.ckpt_reg { /*注册验证码*/
+    background-color: green;
+    width: 100px;
+    height: 50px;
+    float: left;
+
+}
+
+.register-top form input { /*注册界面*/
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #818181;
+    padding: 15px 20px;
+    background: #CACACA;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin: 0px 0px 12px 0px;
+    width: auto;
+}
+
+span { /*无用*/
+    margin-left: 0px;
+    width: 100%;
+}
+
+td {
+    font-size: 15px;
+    font-weight: 500;
+    color: #818181;
+}
+
+.t_reg {
+    margin-left: 145px;
+}
+
+.login_info {
+    /*margin-left: 100px;*/
+    /*width: 50px;*/
+    width: 11%;
+}
+
+/*----------忘记密码*/
+.forgot a {
+    font-size: 13px;
+    font-weight: 500;
+    color: #F45B4B;
+    display: inline-block;
+    border-right: 2px solid #F45B4B;
+    padding: 0px 7px 0px 0px;
+}
+
+.forgot a:hover {
+    color: #818181;
+}
+
+.forgot input[type="submit"] { /*sub提交按钮*/
+    background: #F45B4B;
+    color: #FFF;
+    font-size: 17px;
+    font-weight: 400;
+    padding: 8px 7px;
+    width: 20%;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 6px;
+    -webkit-border-radius: 19px;
+    -moz-border-radius: 6px;
+    -o-border-radius: 6px;
+    margin: 0px 7px 0px 3px;
+    outline: none;
+    border: none;
+}
+
+.forgot input[type="submit"]:hover {
+    background: #818181;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+}
+
+.login_ajax { /*登录按钮*/
+    width: 278px;
+    height: 48px;
+    border-radius: 25px; /*圆角*/
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 129px;
+    background: #F45B4B;
+    color: #FFF;
+    padding: 8px 7px;
+    outline: none;
+    border: none;
+}
