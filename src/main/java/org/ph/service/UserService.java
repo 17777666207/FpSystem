@@ -13,7 +13,6 @@ public interface UserService {
      * @return
      */
     public boolean registerUser(User user);
-
     /***
      * 用户登录
      * @param user
